@@ -6,12 +6,14 @@ public class FinishLine : MonoBehaviour
 {
     [SerializeField] float delayBeforeReload = 1f; // Delay before reloading the scene
     [SerializeField] ParticleSystem finishEffect;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             Debug.Log("Finish Line!");
             finishEffect.Play(); // Play finish effect
+            GetComponent<AudioSource>().Play(); // Play finish sound
             Invoke("reloadScene", delayBeforeReload); // Delay to allow player to see the message
         }
     }
